@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marks Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background: #fff;
+      padding: 20px 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      width: 320px;
+      text-align: center;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    .result {
+      margin-top: 15px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+    }
+    .footer {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #444;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Marks Calculator</h2>
+
+    <input type="number" id="a1" placeholder="Enter AAT1 marks (max 10)">
+    <input type="number" id="a2" placeholder="Enter AAT2 marks (max 10)">
+    <input type="number" id="m1" placeholder="Enter Mid1 marks (max 30)">
+    <input type="number" id="m2" placeholder="Enter Mid2 marks (max 30)">
+    <input type="number" id="att" placeholder="Enter Attendance (%)">
+    
+    <button onclick="calculate()">Calculate</button>
+    <div id="result" class="result"></div>
+
+    <!-- Footer with your name + branch -->
+    <div class="footer">Created by M. Dhanush — Artificial Intelligence and Machine Learning</div>
+  </div>
+
+  <script>
+    function calculate() {
+      let a1 = Number(document.getElementById("a1").value);
+      let a2 = Number(document.getElementById("a2").value);
+      let m1 = Number(document.getElementById("m1").value);
+      let m2 = Number(document.getElementById("m2").value);
+      let att = Number(document.getElementById("att").value);
+
+      if (a1 > 10 || a2 > 10 || m1 > 30 || m2 > 30) {
+        alert("Invalid marks entered!");
+        return;
+      }
+
+      let aatMarks = a1 > a2 ? a1 * 0.75 + a2 * 0.25 : a2 * 0.75 + a1 * 0.25;
+      aatMarks *= 1.5;
+
+      let midMarks = m1 > m2 ? m1 * 0.75 + m2 * 0.25 : m2 * 0.75 + m1 * 0.25;
+      midMarks *= 0.7;
+      if (midMarks > 20) midMarks = 20;
+
+      let attMarks = 0;
+      if (att >= 90 && att < 100) attMarks = 5;
+      else if (att >= 85 && att < 90) attMarks = 4;
+      else if (att >= 80 && att < 85) attMarks = 3;
+      else if (att > 75 && att < 80) attMarks = 2;
+
+      const total = Math.round(aatMarks + midMarks + attMarks);
+      document.getElementById("result").innerText = "Final Marks: " + total;
+    }
+  </script>
+</body>
+</html>
