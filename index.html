@@ -96,7 +96,7 @@
       if (att >= 90 && att <= 100) attMarks = 5;
       else if (att >= 85 && att < 90) attMarks = 4;
       else if (att >= 80 && att < 85) attMarks = 3;
-      else if (att > 75 && att < 80) attMarks = 2;
+      else if (att >=75 && att < 80) attMarks = 2;
 
       const total = Math.round(aatMarks + midMarks + attMarks);
       document.getElementById("result").innerText = "Final Marks: " + total;
