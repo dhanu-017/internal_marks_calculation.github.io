@@ -29,7 +29,7 @@
       border-radius: 6px;
     }
     button {
-      width: 100%;
+      width: 48%;
       padding: 10px;
       background: #007bff;
       color: #fff;
@@ -37,9 +37,16 @@
       border-radius: 6px;
       cursor: pointer;
       font-size: 16px;
+      margin: 5px 1%;
     }
     button:hover {
       background: #0056b3;
+    }
+    .clear-btn {
+      background: #dc3545;
+    }
+    .clear-btn:hover {
+      background: #a71d2a;
     }
     .result {
       margin-top: 15px;
@@ -65,7 +72,11 @@
     <input type="number" id="m2" placeholder="Enter Mid2 marks (max 30)">
     <input type="number" id="att" placeholder="Enter Attendance (%)">
     
-    <button onclick="calculate()">Calculate</button>
+    <div>
+      <button onclick="calculate()">Calculate</button>
+      <button class="clear-btn" onclick="clearFields()">Clear</button>
+    </div>
+
     <div id="result" class="result"></div>
 
     <!-- Footer with your name + branch -->
@@ -112,6 +123,12 @@
 
       let total = aat(a1, a2) + mid(m1, m2) + atd(att);
       document.getElementById("result").innerText = "Final Marks: " + Math.round(total);
+    }
+
+    function clearFields() {
+      document.querySelectorAll("input").forEach(input => input.value = "");
+      document.getElementById("result").innerText = "";
+      document.getElementById("a1").focus();
     }
 
     // Full keyboard navigation
