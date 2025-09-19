@@ -73,6 +73,31 @@
   </div>
 
   <script>
+    function aat(a1, a2) {
+      let marks = (a1 + a2) / 2;
+      marks *= 1.5;
+      return Math.round(marks * 100) / 100;
+    }
+
+    function mid(m1, m2) {
+      let marks;
+      if (m1 > m2) {
+        marks = m1 * 0.75 + m2 * 0.25;
+      } else {
+        marks = m2 * 0.75 + m1 * 0.25;
+      }
+      marks *= (20 / 30);
+      return Math.round(marks * 100) / 100;
+    }
+
+    function atd(att) {
+      if (att >= 90) return 5;
+      else if (att >= 85) return 4;
+      else if (att >= 80) return 3;
+      else if (att >= 75) return 2;
+      else return 0;
+    }
+
     function calculate() {
       let a1 = Number(document.getElementById("a1").value);
       let a2 = Number(document.getElementById("a2").value);
@@ -85,21 +110,8 @@
         return;
       }
 
-      let aatMarks = (a1 + a2)/2;
-      aatMarks *= 1.5;
-
-      let midMarks = m1 > m2 ? m1 * 0.75 + m2 * 0.25 : m2 * 0.75 + m1 * 0.25;
-      midMarks *= (20/30);
-      if (midMarks > 20) midMarks = 20;
-
-      let attMarks = 0;
-      if (att >= 90 && att <= 100) attMarks = 5;
-      else if (att >= 85 && att < 90) attMarks = 4;
-      else if (att >= 80 && att < 85) attMarks = 3;
-      else if (att >=75 && att < 80) attMarks = 2;
-
-      const total = Math.round(aatMarks + midMarks + attMarks);
-      document.getElementById("result").innerText = "Final Marks: " + total;
+      let total = aat(a1, a2) + mid(m1, m2) + atd(att);
+      document.getElementById("result").innerText = "Final Marks: " + Math.round(total);
     }
   </script>
 </body>
