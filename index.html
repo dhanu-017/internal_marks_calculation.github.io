@@ -76,7 +76,7 @@
     function aat(a1, a2) {
       let marks = (a1 + a2) / 2;
       marks *= 1.5;
-      return Math.roundTo(marks ,2);
+      return Number(marks.toFixed(2));
     }
 
     function mid(m1, m2) {
@@ -86,8 +86,8 @@
       } else {
         marks = m2 * 0.75 + m1 * 0.25;
       }
-      marks *= (20 / 30);
-      return Math.roundTo(marks ,2)
+      marks *= (20/30);
+      return Number(marks.toFixed(2));
     }
 
     function atd(att) {
@@ -113,6 +113,26 @@
       let total = aat(a1, a2) + mid(m1, m2) + atd(att);
       document.getElementById("result").innerText = "Final Marks: " + Math.round(total);
     }
+
+    // Full keyboard navigation
+    document.querySelectorAll("input").forEach((input, index, inputs) => {
+      input.addEventListener("keydown", function (event) {
+        if (event.key === "ArrowDown" || event.key === "Enter") {
+          event.preventDefault();
+          if (index < inputs.length - 1) {
+            inputs[index + 1].focus();
+          } else {
+            calculate(); // last input + Enter/ArrowDown triggers result
+          }
+        } 
+        else if (event.key === "ArrowUp") {
+          event.preventDefault();
+          if (index > 0) {
+            inputs[index - 1].focus();
+          }
+        }
+      });
+    });
   </script>
 </body>
 </html>
