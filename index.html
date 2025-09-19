@@ -76,7 +76,7 @@
     function aat(a1, a2) {
       let marks = (a1 + a2) / 2;
       marks *= 1.5;
-      return Math.round(marks * 100) / 100;
+      return Math.roundTo(marks ,2);
     }
 
     function mid(m1, m2) {
@@ -87,7 +87,7 @@
         marks = m2 * 0.75 + m1 * 0.25;
       }
       marks *= (20 / 30);
-      return Math.round(marks * 100) / 100;
+      return Math.roundTo(marks ,2)
     }
 
     function atd(att) {
