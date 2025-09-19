@@ -79,7 +79,6 @@
 
     <div id="result" class="result"></div>
 
-    <!-- Footer with your name + branch -->
     <div class="footer">Created by R24 Artificial Intelligence and Machine Learning Students</div>
   </div>
 
@@ -131,7 +130,6 @@
       document.getElementById("a1").focus();
     }
 
-    // Full keyboard navigation
     document.querySelectorAll("input").forEach((input, index, inputs) => {
       input.addEventListener("keydown", function (event) {
         if (event.key === "ArrowDown" || event.key === "Enter") {
@@ -139,7 +137,7 @@
           if (index < inputs.length - 1) {
             inputs[index + 1].focus();
           } else {
-            calculate(); // last input + Enter/ArrowDown triggers result
+            calculate(); 
           }
         } 
         else if (event.key === "ArrowUp") {
