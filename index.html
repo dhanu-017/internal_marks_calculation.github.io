@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,14 +14,16 @@
       align-items: center;
       height: 100vh;
     }
+
     .container {
       background: #fff;
       padding: 20px 30px;
       border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       width: 320px;
       text-align: center;
     }
+
     input {
       width: 100%;
       padding: 8px;
@@ -28,6 +31,7 @@
       border: 1px solid #ccc;
       border-radius: 6px;
     }
+
     button {
       width: 48%;
       padding: 10px;
@@ -39,21 +43,26 @@
       font-size: 16px;
       margin: 5px 1%;
     }
+
     button:hover {
       background: #0056b3;
     }
+
     .clear-btn {
       background: #dc3545;
     }
+
     .clear-btn:hover {
       background: #a71d2a;
     }
+
     .result {
       margin-top: 15px;
       font-size: 18px;
       font-weight: bold;
       color: #333;
     }
+
     .footer {
       margin-top: 15px;
       font-size: 14px;
@@ -62,16 +71,17 @@
     }
   </style>
 </head>
+
 <body>
   <div class="container">
     <h2>Marks Calculator</h2>
 
-    <input type="number" id="a1" placeholder="Enter AAT1 marks (max 10)">
-    <input type="number" id="a2" placeholder="Enter AAT2 marks (max 10)">
-    <input type="number" id="m1" placeholder="Enter Mid1 marks (max 30)">
-    <input type="number" id="m2" placeholder="Enter Mid2 marks (max 30)">
-    <input type="number" id="att" placeholder="Enter Attendance (%)">
-    
+    <input type="text" id="a1" placeholder="Enter AAT1 marks (max 10)" inputmode="numeric">
+    <input type="text" id="a2" placeholder="Enter AAT2 marks (max 10)" inputmode="numeric">
+    <input type="text" id="m1" placeholder="Enter Mid1 marks (max 30)" inputmode="numeric">
+    <input type="text" id="m2" placeholder="Enter Mid2 marks (max 30)" inputmode="numeric">
+    <input type="text" id="att" placeholder="Enter Attendance (%)" inputmode="numeric">
+
     <div>
       <button onclick="calculate()">Calculate</button>
       <button class="clear-btn" onclick="clearFields()">Clear</button>
@@ -96,7 +106,7 @@
       } else {
         marks = m2 * 0.75 + m1 * 0.25;
       }
-      marks *= (20/30);
+      marks *= (20 / 30);
       return Number(marks.toFixed(2));
     }
 
@@ -121,7 +131,12 @@
       }
 
       let total = aat(a1, a2) + mid(m1, m2) + atd(att);
-      document.getElementById("result").innerText = "Final Marks: " + Math.round(total);
+      if (total + 1 < 20) {
+        var message = 'Not Eligible For Externals';
+      } else {
+        message = "Eligible For Externals";
+      }
+      document.getElementById("result").innerText = `Final Marks: ${Math.round(total + 1)} \n ${message}`;
     }
 
     function clearFields() {
@@ -137,9 +152,9 @@
           if (index < inputs.length - 1) {
             inputs[index + 1].focus();
           } else {
-            calculate(); 
+            calculate();
           }
-        } 
+        }
         else if (event.key === "ArrowUp") {
           event.preventDefault();
           if (index > 0) {
@@ -150,4 +165,5 @@
     });
   </script>
 </body>
+
 </html>
