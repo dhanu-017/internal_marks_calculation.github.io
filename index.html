@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Marks Calculator</title>
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -63,6 +64,14 @@
       color: #333;
     }
 
+    .eligible {
+      color: green;
+    }
+
+    .not-eligible {
+      color: red;
+    }
+
     .footer {
       margin-top: 15px;
       font-size: 14px;
@@ -101,11 +110,13 @@
 
     function mid(m1, m2) {
       let marks;
+
       if (m1 > m2) {
         marks = m1 * 0.75 + m2 * 0.25;
       } else {
         marks = m2 * 0.75 + m1 * 0.25;
       }
+
       marks *= (20 / 30);
       return Number(marks.toFixed(2));
     }
@@ -131,12 +142,15 @@
       }
 
       let total = aat(a1, a2) + mid(m1, m2) + atd(att);
-      if (total + 1 < 20) {
-        var message = 'Not Eligible For Externals';
+      let result = document.getElementById("result");
+
+      if (total >= 20) {
+        result.innerHTML = `Final Marks: ${Math.round(total)}<br>
+          <span class="eligible">Eligible For Externals</span>`;
       } else {
-        message = "Eligible For Externals";
+        result.innerHTML = `Final Marks: ${Math.round(total)}<br>
+          <span class="not-eligible">Not Eligible For Externals</span>`;
       }
-      document.getElementById("result").innerText = `Final Marks: ${Math.round(total + 1)} \n ${message}`;
     }
 
     function clearFields() {
@@ -149,14 +163,15 @@
       input.addEventListener("keydown", function (event) {
         if (event.key === "ArrowDown" || event.key === "Enter") {
           event.preventDefault();
+
           if (index < inputs.length - 1) {
             inputs[index + 1].focus();
           } else {
             calculate();
           }
-        }
-        else if (event.key === "ArrowUp") {
+        } else if (event.key === "ArrowUp") {
           event.preventDefault();
+
           if (index > 0) {
             inputs[index - 1].focus();
           }
